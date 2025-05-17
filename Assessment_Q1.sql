@@ -6,7 +6,7 @@ SELECT
     uc.name,
     COUNT(DISTINCT ss.id) AS savings_count,
     COUNT(DISTINCT pp.id) AS investment_count,
-    ROUND(SUM((ss.confirmed_amount + pp.confirmed_amount) / 100.0), 2) AS total_deposits
+    ROUND(SUM((ss.confirmed_amount + pp.amount) / 100.0), 2) AS total_deposits
     -- calculating the total amount of deposits made by each customer across both savings and investment plans
 FROM users_customuser uc
 LEFT JOIN savings_savingsaccount ss
