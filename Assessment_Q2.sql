@@ -4,10 +4,10 @@
 WITH txn_monthly AS (
     SELECT
         owner_id,
-        DATE_TRUNC('month', created_at) AS txn_month,
+        month(transaction_date) AS txn_month,
         COUNT(id) AS monthly_txn
     FROM savings_savingsaccount
-    GROUP BY owner_id, DATE_TRUNC('month', created_at)
+    GROUP BY owner_id, month(transaction_date)
 ), -- subquery to calculate customers' transaction frequency per month
 customer_freq AS (
     SELECT
@@ -31,5 +31,7 @@ SELECT
     frequency_category,
     COUNT(owner_id) AS customer_count,
     ROUND((AVG(avg_txn_per_month)), 1) AS avg_transactions_per_month
+    -- average transaction per category
 FROM freq_category
 GROUP BY frequency_category;
+
