@@ -14,8 +14,8 @@ LEFT JOIN savings_savingsaccount ss
 LEFT JOIN plans_plan pp
     ON uc.id = pp.owner_id   
 WHERE ss.confirmed_amount > 0
-AND ss.is_regular_savings = 1
-AND pp.confirmed_amount > 0 
+AND pp.is_regular_savings = 1
+AND pp.amount > 0 
 AND pp.is_a_fund = 1
 GROUP BY uc.id, uc.name
 HAVING COUNT(DISTINCT ss.id) >= 1 AND COUNT(DISTINCT pp.id) >= 1
