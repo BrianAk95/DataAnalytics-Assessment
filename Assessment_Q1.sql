@@ -9,7 +9,7 @@ with savings as (SELECT
         savings_savingsaccount s
     LEFT JOIN plans_plan p ON s.plan_id = p.id
     WHERE
-        p.is_regular_savings = 1 
+        p.is_regular_savings = 1 -- filter for savings as exposed in the hint
     GROUP BY s.owner_id),
     -- subquery to aggregate for the savings plan 
     Investment as (SELECT 
@@ -20,7 +20,7 @@ with savings as (SELECT
         savings_savingsaccount s
     LEFT JOIN plans_plan p ON s.plan_id = p.id
     WHERE
-        p.is_a_fund = 1 
+        p.is_a_fund = 1 -- filter for investment as exposed in the hint
     GROUP BY s.owner_id) 
     -- subquery to aggregate for the investment plan 
     SELECT 
