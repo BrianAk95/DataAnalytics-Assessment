@@ -15,7 +15,7 @@ tenure_data AS (
         CONCAT(first_name, ' ', last_name) AS name,
 		TIMESTAMPDIFF(MONTH, date_joined, CURRENT_DATE) AS tenure_months
     FROM users_customuser
-), -- subquery to calculate difference in month since become a customer till current date
+), -- subquery to calculate difference in month since becoming a customer till current date
 clv_calc AS (
     SELECT
         u.id as customer_id,
