@@ -37,4 +37,4 @@ FROM
     users_customuser uc left join savings s ON uc.id = s.owner_id
     left join investment i ON uc.id = i.owner_id
     where s.savings_count is not null 
-    and i.investment_count is not null
+    and i.investment_count is not null -- the where clause ensures atleast one funded account for both plans
