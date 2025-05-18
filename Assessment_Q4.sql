@@ -25,6 +25,7 @@ clv_calc AS (
         ROUND(((ts.txn_count / NULLIF(td.tenure_months, 0)) * 12 * (ts.total_txn * 0.001 / ts.txn_count)), 2) AS estimated_clv
 -- This expression estimates customer lifetime value based on:
 -- Average monthly transaction activity - (ts.txn_count / NULLIF(td.tenure_months, 0))
+    -- using NULLIF to avoid division error if field is zero
 -- Assumed profit margin (0.1%) - (ts.total_txn * 0.001 / ts.txn_count)
 -- Projected over a year multiplyiing by 12
     FROM tenure_data td
