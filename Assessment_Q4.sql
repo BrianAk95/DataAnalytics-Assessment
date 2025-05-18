@@ -22,7 +22,7 @@ clv_calc AS (
         CONCAT(u.first_name, ' ', u.last_name) as name,
         td.tenure_months,
         ts.txn_count AS total_transactions,
-        ROUND((ts.txn_count / NULLIF(td.tenure_months, 0)) * 12 * (ts.total_txn * 0.001 / ts.txn_count), 2) AS estimated_clv
+        ROUND(((ts.txn_count / NULLIF(td.tenure_months, 0)) * 12 * (ts.total_txn * 0.001 / ts.txn_count)), 2) AS estimated_clv
 -- This expression estimates customer lifetime value based on:
 -- Average monthly transaction activity - (ts.txn_count / NULLIF(td.tenure_months, 0))
 -- Assumed profit margin (0.1%) - (ts.total_txn * 0.001 / ts.txn_count)
