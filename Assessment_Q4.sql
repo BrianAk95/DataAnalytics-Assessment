@@ -1,7 +1,7 @@
 -- Q4: Customer Lifetime Value (CLV) Estimation
 -- Estimate CLV based on tenure and transaction profit
 
-WITH txn_summary AS (
+WITH txn_stats AS (
     SELECT
         owner_id,
         SUM(confirmed_amount) AS total_txn,
@@ -28,7 +28,7 @@ clv_calc AS (
 -- Assumed profit margin (0.1%) - (ts.total_txn * 0.001 / ts.txn_count)
 -- Projected over a year multiplyiing by 12
     FROM tenure_data td
-    JOIN txn_summary ts ON td.customer_id = ts.owner_id
+    JOIN txn_stats ts ON td.customer_id = ts.owner_id
     JOIN users_customuser u ON u.id = td.customer_id
 )
 SELECT *
