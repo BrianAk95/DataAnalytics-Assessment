@@ -56,4 +56,4 @@ Cowrywise assessment
 
 ### Final Thoughts
 
-This assessment was really good to test one reasoning capacity and ability to see hiding details. It also reinforced the importance of query performance and data validation.
+This assessment was really good to test one reasoning capacity and ability to see hiding detailss. It also reinforced the importance of query performance and data validation.
