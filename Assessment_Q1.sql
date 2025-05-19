@@ -10,6 +10,7 @@ with savings as (SELECT
     LEFT JOIN plans_plan p ON s.plan_id = p.id
     WHERE
         p.is_regular_savings = 1 -- filter for savings as exposed in the hint
+        and s.confirmed_amount > 0 -- plan is funded
     GROUP BY s.owner_id),
     -- subquery to aggregate for the savings plan 
     Investment as (SELECT 
@@ -21,6 +22,7 @@ with savings as (SELECT
     LEFT JOIN plans_plan p ON s.plan_id = p.id
     WHERE
         p.is_a_fund = 1 -- filter for investment as exposed in the hint
+        and s.confirmed_amount > 0 -- plan is funded
     GROUP BY s.owner_id) 
     -- subquery to aggregate for the investment plan 
     SELECT 
@@ -37,4 +39,4 @@ FROM
     users_customuser uc left join savings s ON uc.id = s.owner_id
     left join investment i ON uc.id = i.owner_id
     where s.savings_count is not null 
-    and i.investment_count is not null -- the where clause ensures atleast one funded account for both plans
+    and i.investment_count is not nulls -- the where clause ensures atleast one funded account for both plans

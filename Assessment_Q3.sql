@@ -33,7 +33,7 @@ SELECT
     plan_id,
     owner_id,
     type,
-    last_transaction_date,
+    DATE(last_transaction_date) AS last_transaction_date,
     TIMESTAMPDIFF(DAY, last_transaction_date, CURRENT_DATE) AS inactivity_days
 FROM savings_investment
 WHERE last_transaction_date <= CURRENT_DATE - INTERVAL 365 day; -- expected output
